@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.jp.pcm.dao.UsersDao">
+	<!-- 目的：为dao接口方法提供sql语句配置 -->
+	<select id="queryById" resultType="Users">
+		<!-- 具体的sql -->
+		SELECT
+			id,
+			ur_name,
+			ur_barcode,
+			ur_sex,
+			ur_psd,
+			ur_access,
+			ur_type,
+			stu_type,
+			sr_iphone
+		FROM
+			users
+		WHERE
+			ur_access = #{access}
+		  AND 
+		    ur_psd = #{psd}
+	</select>
+	
+	<select id="queryAll" resultType="Book">
+		SELECT
+			id,
+			ur_name,
+			ur_barcode,
+			ur_sex,
+			ur_psd,
+			ur_access,
+			ur_type,
+			stu_type,
+			sr_iphone
+		FROM
+			users
+		ORDER BY
+			id
+		LIMIT #{offset}, #{limit}
+	</select>
+	
+	<update id="reduceNumber">
+		UPDATE users
+		SET ur_type = ur_type - 1
+		WHERE
+			id = #{id}
+		AND ur_type > 0
+	</update>
+</mapper>

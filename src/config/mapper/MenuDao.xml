@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="co.jp.pcm.dao.MenuDao">
+	<!-- 目的：为dao接口方法提供sql语句配置 -->
+	<select id="getFirstMenus" resultType="Menu">
+		<!-- 具体的sql -->
+		SELECT
+			id,
+			have_child,
+			menu_img,
+			menu_name,
+			menu_url,
+			order_num,
+			parent_id
+		FROM
+			menu
+		WHERE
+		    id IN		
+		<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+            #{item}  
+         </foreach>
+         
+			<!-- id IN #{access} TODO -->
+		  AND 
+		    parent_id = 0
+	    ORDER BY order_num
+	</select>
+	
+	<select id="getMenuByParentId" resultType="Menu">
+				SELECT
+			id,
+			have_child,
+			menu_img,
+			menu_name,
+			menu_url,
+			order_num,
+			parent_id
+		FROM
+			menu
+		WHERE
+		    parent_id = #{parentId}
+	</select>
+	
+	<update id="reduceNumber">
+		UPDATE users
+		SET ur_type = ur_type - 1
+		WHERE
+			id = #{id}
+		AND ur_type > 0
+	</update>
+</mapper>

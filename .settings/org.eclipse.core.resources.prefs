@@ -2,4 +2,6 @@ eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/jsp/common/bootstrap.jsp=UTF-8
 encoding//WebContent/WEB-INF/jsp/common/head.jsp=UTF-8
 encoding//WebContent/WEB-INF/jsp/common/tag.jsp=UTF-8
+encoding//src/co/jp/pcm/controller/BaseController.java=UTF-8
+encoding//src/co/jp/pcm/filter/LoginFilter.java=UTF-8
 encoding/<project>=UTF-8
